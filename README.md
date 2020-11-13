@@ -12,6 +12,8 @@
 ## Additional Resources:
 [Sass: Syntactically Awesome Style Sheets](https://sass-lang.com/ 'Sass Lang')
 [CSS Tricks - BEM 101](https://css-tricks.com/bem-101/ 'CSS Tricks')
+[Card Flip Animation](https://3dtransforms.desandro.com/card-flip '3D Transforms')
+[Card Pattern](http://www.heropatterns.com/ 'Hero Patterns')
 
 ## Installation:
 No particular installation required. Download repo and open in a code editor. Content will require a Live Server to view properly.
