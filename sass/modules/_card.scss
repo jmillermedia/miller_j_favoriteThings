@@ -38,6 +38,20 @@
     position: absolute;
     backface-visibility: hidden;
 
+    .flipBack {
+        font-family: ProductSans;
+        text-align: center;
+        font-size: 3em;
+        position: absolute;
+        right: 0;
+        margin-right: .25em;
+        color: #f2f2f2;
+        font: outline;
+        -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+    }
+
     &--title {
         font-family: ProductSans;
         color: #e6e6e6;

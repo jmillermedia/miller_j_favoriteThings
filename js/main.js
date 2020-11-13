@@ -3,51 +3,58 @@ import {fetchData} from "./modules/DataMiner.js";
 
 (() => {
 
-    function retrieveProjectInfo(event) {
-        if (!event.target.id) { return }
-        fetchData(`./includes/index.php?id=${event.target.id}`).then(data => console.log(data)).catch(err => console.log(err));
-    }
-
-    function getCardData(info) {
-        // cards
-        let thingSection = document.querySelector('.favoriteSection'),
+    let thingSection = document.querySelector('.favoriteSection'),
             thingTemplate = document.querySelector('#favesTemplate').content,
             currentThing = thingTemplate.cloneNode(true),
-            currentThingText = currentThing.querySelector('.card__face').children,
-        // buttons
-            buttonsSection = document.querySelector('.buttonsSection'),
-            buttonTemplate = document.querySelector('#buttonTemplate').content;
+            currentThingText = currentThing.querySelector('.card__face').children;
 
-        for (let thing of info) {
-            let currentButton = buttonTemplate.cloneNode(true),
-                currentButtonText = currentButton.querySelector('.buttons').children;
-            //cards
+            thingSection.appendChild(currentThing);
+
+    function handleDataSet(data) {
+        for (let thing of data) {
+
             currentThingText[0].id = thing.ID;
             currentThingText[0].src = `images/${thing.picture}`;
             currentThingText[1].innerHTML = thing.thing;
             currentThingText[2].innerHTML = thing.description;
-            //buttons
-            currentButtonText[0].id = thing.ID;
-            currentButtonText[0].innerHTML = thing.thing;
+            }
+        }
 
-            thingSection.appendChild(currentThing);
+    function retrieveCardInfo(data) {
+        if (!data.target.id) { return }
+        fetchData(`./includes/index.php?id=${data.target.id}`).then(data => handleDataSet(data)).catch(err => console.log(err));
+    }
+
+    function getButtonData(info) {
+        let buttonsSection = document.querySelector('.buttonsSection'),
+            buttonTemplate = document.querySelector('#buttonTemplate').content;
+
+        for (let piece of info) {
+            let currentButton = buttonTemplate.cloneNode(true),
+                currentButtonText = currentButton.querySelector('.buttons').children;
+
+            currentButtonText[0].id = piece.ID;
+            currentButtonText[0].innerHTML = piece.thing;
             buttonsSection.appendChild(currentButton);
             }
 
-            buttonsSection.addEventListener("click", retrieveProjectInfo);
-            let card = document.querySelector('.card'),
-                flipButton = document.querySelectorAll('.buttonSection');
-                debugger;
+        buttonsSection.addEventListener("click", retrieveCardInfo);
 
-            function flipCard() {
+        let flipButton = document.querySelectorAll('.buttonsSection');
 
-            card.classList.toggle('flipped');
-            }
-
-flipButton.forEach(butt => butt.addEventListener('click', flipCard));
+        flipButton.forEach(butt => butt.addEventListener('click', flipCard));
         }
 
-    fetchData('./includes/index.php').then(data => getCardData(data)).catch(err => console.log(err));
+    function flipCard() {
+        let card = document.querySelector('.card');
+
+        if (!card.classList.contains('flipped')) {
+            return;
+        }
+        card.classList.toggle('flipped');
+        }
+
+    fetchData('./includes/index.php').then(data => getButtonData(data)).catch(err => console.log(err));
 
 })();
 
