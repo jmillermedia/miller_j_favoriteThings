@@ -42,7 +42,7 @@ import {fetchData} from "./modules/DataMiner.js";
             function flipCard() {
 
             card.classList.toggle('flipped');
-}
+            }
 
 flipButton.forEach(butt => butt.addEventListener('click', flipCard));
         }
