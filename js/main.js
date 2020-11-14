@@ -1,5 +1,4 @@
 import {fetchData} from "./modules/DataMiner.js";
-// import "./modules/cardFlip.js";
 
 (() => {
 
@@ -40,9 +39,11 @@ import {fetchData} from "./modules/DataMiner.js";
 
         buttonsSection.addEventListener("click", retrieveCardInfo);
 
-        let flipButton = document.querySelectorAll('.buttonsSection');
+        let flipButton = document.querySelectorAll('.buttonsSection'),
+            flipBack = document.querySelector('.flipBack');
 
         flipButton.forEach(butt => butt.addEventListener('click', flipCard));
+        flipBack.addEventListener('click', flipBackCard);
         }
 
     function flipCard() {
@@ -53,6 +54,13 @@ import {fetchData} from "./modules/DataMiner.js";
         }
         card.classList.toggle('flipped');
         }
+
+    function flipBackCard() {
+    let card = document.querySelector('.card');
+
+        card.classList.toggle('flipped');
+    }
+
 
     fetchData('./includes/index.php').then(data => getButtonData(data)).catch(err => console.log(err));
 
