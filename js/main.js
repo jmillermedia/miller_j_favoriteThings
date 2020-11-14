@@ -11,7 +11,6 @@ import {fetchData} from "./modules/DataMiner.js";
 
     function handleDataSet(data) {
         for (let thing of data) {
-
             currentThingText[0].id = thing.ID;
             currentThingText[0].src = `images/${thing.picture}`;
             currentThingText[1].innerHTML = thing.thing;

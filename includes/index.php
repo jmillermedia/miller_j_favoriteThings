@@ -2,8 +2,8 @@
     include("connect.php");
     include("functions.php");
 
-    if(isset($_GET["ID"])) {
-        $targetID = $_GET["ID"];
+    if(isset($_GET["id"])) {
+        $targetID = $_GET["id"];
         $result = getSingleThing($pdo, $targetID);
 
         return $result;
